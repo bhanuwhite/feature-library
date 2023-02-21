@@ -1,12 +1,14 @@
 <!-- The Modal -->
 <div id="myModal" class="moDal">
     <!-- Modal content -->
-    <div class="modal-Content" [style.width]="width" [style.background]="backGroundClr">
+    <div class="modal-Content" [style.width]="width" >
         <div class="modal-Header" [style.background]="headerColor" [style.color]="headerTxtColor">
             <span class="close" [style.color]="headerTxtColor" (click)="close()">&times;</span>
-            <p>{{headerText}}</p>
+            <p class="modal-Heading">{{headerText}}</p>
+        <hr class="modal-line" [style.color]="headerTxtColor">
+
         </div>
-        <div class="modal-Body">
+        <div class="modal-Body" [style.background]="backGroundClr">
             <ng-content></ng-content>
         </div>
         <div class="modal-Footer d-flex justify-content-end" *ngIf="footer" [style.background-color]="footerColor">
