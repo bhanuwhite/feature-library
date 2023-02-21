@@ -1,43 +1,19 @@
 <!-- The Modal -->
 <div id="myModal" class="moDal">
     <!-- Modal content -->
-    <ng-container *ngIf="alert=='Modal'">
-        <div class="modal-Content" [style.width]="width" [style.background]="backGroundClr">
-            <div class="modal-Header" [style.background]="headerColor" [style.color]="headerTxtColor">
-                <span class="close" [style.color]="headerTxtColor" (click)="close()">&times;</span>
-                <p>{{headerText}}</p>
-            </div>
-            <div class="modal-Body">
-                <ng-content></ng-content>
-            </div>
-            <div class="modal-Footer d-flex justify-content-end" *ngIf="footer" [style.background-color]="footerColor">
-                <button class="button-33 me-2" *ngIf="saveBtn" (click)='save.emit()'
-                    [style.background-color]="saveBtnclr" [style.color]="saveBtnTxtclr">{{saveBtntxt}}</button>
-                <button class="button-33" *ngIf="cancelBtn" (click)='cancel.emit()' [style.color]="cancelBtnTxtclr"
-                    [style.background-color]="cancelBtnclr">{{cancelBtntxt}}</button>
-            </div>
+    <div class="modal-Content" [style.width]="width" [style.background]="backGroundClr">
+        <div class="modal-Header" [style.background]="headerColor" [style.color]="headerTxtColor">
+            <span class="close" [style.color]="headerTxtColor" (click)="close()">&times;</span>
+            <p>{{headerText}}</p>
         </div>
-    </ng-container>
-    <ng-container *ngIf="alert=='Success' || alert=='Info' || alert=='Alert' || alert=='Error'">
-        <div>
-            <div class="alert  alert-white rounded"
-                [ngClass]="(alert=='Success')?'alert-success':(alert=='Info')?'alert-info':(alert=='Alert')?'alert-warning':(alert=='Error')?'alert-danger':''">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"
-                    (click)="close()">&times;</button>
-                <div class="icon"><i class="fa fa-info-circle"></i></div>
-                <strong>{{alert}}!</strong> {{alertMsg}}
-            </div>
+        <div class="modal-Body">
+            <ng-content></ng-content>
         </div>
-    </ng-container>
-
-</div>
-
-<div *ngIf="alert=='failed'">
-
-</div>
-<div *ngIf="alert=='warnning'">
-
-</div>
-<div *ngIf="alert=='info'">
-
+        <div class="modal-Footer d-flex justify-content-end" *ngIf="footer" [style.background-color]="footerColor">
+            <button class="button-33 me-2" *ngIf="saveBtn" (click)='save.emit()' [style.background-color]="saveBtnclr"
+                [style.color]="saveBtnTxtclr">{{saveBtntxt}}</button>
+            <button class="button-33" *ngIf="cancelBtn" (click)='cancel.emit()' [style.color]="cancelBtnTxtclr"
+                [style.background-color]="cancelBtnclr">{{cancelBtntxt}}</button>
+        </div>
+    </div>
 </div>
