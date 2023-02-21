@@ -17,16 +17,16 @@ export class AahexComponent implements OnInit {
   @Input() backGroundClr: string = 'white';
   /*header*/
   @Input() headerText: string = 'Popupbox';
-  @Input() headerColor: string = 'darkgrey';
-  @Input() headerTxtColor: string = 'red';
+  @Input() headerColor: string = '#E7E7E7';
+  @Input() headerTxtColor: string = '#000080';
   /*footer*/
-  @Input() footerColor: string = 'darkgrey';
+  @Input() footerColor: string = '#E7E7E7';
   /*button*/
   @Input() saveBtntxt: string = 'Save';
-  @Input() saveBtnclr: string = 'green';
+  @Input() saveBtnclr: string = '#000080';
   @Input() cancelBtntxt: string = 'Cancel';
   @Input() saveBtnTxtclr: string = 'white';
-  @Input() cancelBtnclr: string = 'red';
+  @Input() cancelBtnclr: string = '#E55451';
   @Input() cancelBtnTxtclr: string = 'white';
   /*truefalse*/
   @Input() footer: boolean = true;

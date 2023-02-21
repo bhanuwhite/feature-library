@@ -35,9 +35,18 @@
     padding: 5px;
     height: 50px;
 }
+.modal-Heading{
+    font-size: 15px;
+    font-weight: 600;
+}
 
 .modal-Body {
+    height: 10px;
     padding: 10px;
+}
+.modal-line{
+    width: 100%;
+    margin-top: 20px;
 }
 
 #header {
@@ -46,9 +55,9 @@
 }
 
 /*modal body*/
-.modal-Body {
-    background-color: #fefefe;
-}
+// .modal-Body {
+//     background-color: red;
+// }
 
 .modal-Footer {
     // background-color: aqua;
@@ -65,7 +74,7 @@
     font-weight: bold;
     line-height: 1;
     text-shadow: 0 1px 0 #fff;
-    opacity: .2;
+    opacity: .4;
 }
 
 .close:hover,
