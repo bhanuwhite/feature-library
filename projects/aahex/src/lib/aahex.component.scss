@@ -1,0 +1,334 @@
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.moDal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-Content {
+    // background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    // padding: 0px;
+    // border: 1px solid #888;
+    /* Could be more or less, depending on screen size */
+}
+
+.modal-Header {
+    padding: 5px;
+    height: 50px;
+}
+
+.modal-Body {
+    padding: 10px;
+}
+
+#header {
+    // background-color: aqua;
+    border-bottom: 2px solid black;
+}
+
+/*modal body*/
+.modal-Body {
+    background-color: #fefefe;
+}
+
+.modal-Footer {
+    // background-color: aqua;
+    // display: flex;
+    // justify-content: end;
+    padding: 10px;
+
+}
+
+/* The Close Button */
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+}
+
+.close:hover,
+.close:focus {
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* button css */
+.button-33 {
+    // background-color: #c2fbd7;
+    border-radius: 100px;
+    // box-shadow: rgba(231, 233, 232, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+    // color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.buttonMargin {
+    margin-left: 10px;
+}
+
+.button-33:hover {
+    // box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+/* alert box*/
+
+
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.alert {
+    padding: 15px;
+    margin: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 25%;
+    float: right;
+
+}
+
+.alert h4 {
+    margin-top: 0;
+    color: inherit;
+}
+
+.alert .alert-link {
+    font-weight: bold;
+}
+
+.alert>p,
+.alert>ul {
+    margin-bottom: 0;
+}
+
+.alert>p+p {
+    margin-top: 5px;
+}
+
+.alert-dismissable {
+    padding-right: 35px;
+}
+
+.alert-dismissable .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.alert-success hr {
+    border-top-color: #c9e2b3;
+}
+
+.alert-success .alert-link {
+    color: #2b542c;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
+.alert-info hr {
+    border-top-color: #a6e1ec;
+}
+
+.alert-info .alert-link {
+    color: #245269;
+}
+
+.alert-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+
+.alert-warning hr {
+    border-top-color: #f7e1b5;
+}
+
+.alert-warning .alert-link {
+    color: #66512c;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+.alert-danger hr {
+    border-top-color: #e4b9c0;
+}
+
+.alert-danger .alert-link {
+    color: #843534;
+}
+
+.alert {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.11);
+}
+
+.alert .sign {
+    font-size: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+    text-align: center;
+    width: 25px;
+    display: inline-block;
+}
+
+.alert-success {
+    background-color: #dbf6d3;
+    border-color: #aed4a5;
+    color: #569745;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #98cce6;
+    color: #3a87ad;
+}
+
+.alert-warning {
+    background-color: #fcf8e3;
+    border-color: #f1daab;
+    color: #c09853;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #e0b1b8;
+    color: #b94a48;
+}
+
+.alert-white {
+    background-image: linear-gradient(to bottom, #FFFFFF, #F9F9F9);
+    border-top-color: #d8d8d8;
+    border-bottom-color: #bdbdbd;
+    border-left-color: #cacaca;
+    border-right-color: #cacaca;
+    color: #404040;
+    padding-left: 61px;
+    position: relative;
+}
+
+.alert-white .icon {
+    text-align: center;
+    width: 45px;
+    height: 100%;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border: 1px solid #bdbdbd;
+}
+
+.alert-white .icon:after {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    display: block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    border: 1px solid #bdbdbd;
+    position: absolute;
+    border-left: 0;
+    border-bottom: 0;
+    top: 50%;
+    right: -6px;
+    margin-top: -5px;
+    background: #fff;
+}
+
+.alert-white.rounded {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.alert-white.rounded .icon {
+    border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px 0 0 3px;
+}
+
+.alert-white .icon i {
+    font-size: 20px;
+    color: #FFF;
+    left: 12px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+}
+
+.alert-white.alert-danger .icon,
+.alert-white.alert-danger .icon:after {
+    border-color: #ca452e;
+    background: #da4932;
+}
+
+.alert-white.alert-info .icon,
+.alert-white.alert-info .icon:after {
+    border-color: #3a8ace;
+    background: #4d90fd;
+}
+
+.alert-white.alert-warning .icon,
+.alert-white.alert-warning .icon:after {
+    border-color: #d68000;
+    background: #fc9700;
+}
+
+.alert-white.alert-success .icon,
+.alert-white.alert-success .icon:after {
+    border-color: #54a754;
+    background: #60c060;
+}
