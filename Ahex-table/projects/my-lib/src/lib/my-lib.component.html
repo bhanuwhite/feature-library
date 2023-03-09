@@ -12,8 +12,9 @@
         <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}  ~</th>
       </thead>
       <tbody>
-        <tr *ngFor="let item of data" [style.background-color]="backGroundClr">
-          <td *ngFor="let key of headers">{{item[key]}}</td>
+        <tr *ngFor="let item of data | slice: startPage: endPage " [style.background-color]="backGroundClr">
+          <td *ngFor="let key  of headers">{{item[key]}}</td>
+
         </tr>
       </tbody> 
     </table>

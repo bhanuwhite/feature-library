@@ -12,7 +12,7 @@ export class MyLibComponent {
   @Input() backGroundClr: string = '#fff';
   @Input() headerColor: string = 'grey';
   @Input() headerTxtColor: string = 'white';
-  data: any;
+  data: any[]=[];
   searchText: any;
   headers: any = [];
   value: any;
@@ -27,12 +27,14 @@ export class MyLibComponent {
 
 
   ngOnInit() {
+    console.log(this.user);
+    console.log(this.headers);
+
     
     let usersLength = Math.floor(this.user.length / this.perPage)
     for (let i = 0; i < usersLength; i++) {
       this.paginationArray.push(i)
     }
-    console.log(this.paginationArray);
     
     this.getData();
     
