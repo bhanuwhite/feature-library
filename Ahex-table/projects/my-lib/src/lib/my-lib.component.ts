@@ -12,13 +12,14 @@ export class MyLibComponent {
   @Input() backGroundClr: string = '#fff';
   @Input() headerColor: string = 'grey';
   @Input() headerTxtColor: string = 'white';
+  @Input() sortIcon:string="fa-solid fa-arrow-up-9-1 ";
   data: any[]=[];
   searchText: any;
   headers: any = [];
   value: any;
-  perPage: number = 3;
+  perPage: number = 5;
   startPage: number = 0;
-  endPage: number = 3;
+  endPage: number = 5;
   paginationArray: any = [];
   booleanValue: any = false;
   duplicateData: any;
@@ -27,8 +28,8 @@ export class MyLibComponent {
 
 
   ngOnInit() {
-    console.log(this.user);
-    console.log(this.headers);
+    // console.log(this.user);
+    // console.log(this.headers);
 
     
     let usersLength = Math.floor(this.user.length / this.perPage)
@@ -47,7 +48,7 @@ export class MyLibComponent {
     this.headers = Object.keys(this.data[0]);
   }
 
-  // Sorting for Table
+  // Searching in Table
   public search(event: any) {
     let searchKey = event.target.value;
     this.data = this.duplicateData;
@@ -60,7 +61,7 @@ export class MyLibComponent {
 
   // Sorting for Table
   public sort(key: any, boolean: any) {
-
+console.log(key,boolean)
     if (boolean == true) {
       this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
       this.booleanValue = !this.booleanValue
@@ -75,6 +76,13 @@ export class MyLibComponent {
   onClick(i: any) {
     this.startPage = i * this.perPage
     this.endPage = (i + 1) * this.perPage
+  }
+
+  next(){
+    console.log('next')
+  }
+  previous(){
+    console.log('prev')
   }
 
 }
