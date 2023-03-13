@@ -1,5 +1,6 @@
 .heading{
-    margin-left: 40%;
+    margin-left: 35%;
+    margin-top: 5%;
   }
   table {
       border: 1px solid #ccc;
@@ -7,6 +8,10 @@
       margin-left: 20%;
       padding: 0;
       table-layout: fixed;
+    }
+    tr:hover td {
+      background-color: grey;
+      color: #fff;
     }
     
     a:link {
@@ -20,10 +25,12 @@
     }
     .input{
       padding: 15px;
-      width: 230px;
+      width: 200px;
       border-top: none;
       border-right: none;
       border-left: none;
+      border-bottom-color: grey;
+
     }
     ::placeholder {
       font-size: 1.2rem;
@@ -108,7 +115,7 @@
   
     /* Pagination links */
     .pagination{
-      margin-left: 51%;
+      margin-left: 328px;
       margin-top: 10px;
     }
   .pagination a {
