@@ -9,11 +9,7 @@
   <div class="table">
     <table [style.width]="tableWidth">
       <thead [style.background-color]="headerColor" [style.color]="headerTxtColor">
-<<<<<<< HEAD
         <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}  <i [ngClass]="(sortIcon)?sortIcon:'null'"></i></th>
-=======
-        <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}</th>
->>>>>>> d7295920be37de206fc727c3358342ed4a9c3fe3
       </thead>
       <tbody>
         <tr *ngFor="let item of data | slice: startPage: endPage " [style.background-color]="backGroundClr">
