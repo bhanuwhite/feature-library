@@ -24,18 +24,19 @@ export class MyLibComponent {
   booleanValue: any = false;
   duplicateData: any;
   activeItem: any = this.data;
+  activePage:number=1;
 
   constructor() { }
 
 
   ngOnInit() {
-    console.log(this.user);
 
-    
+console.log(this.activePage)    
     let usersLength = Math.floor(this.user.length / this.perPage)
     for (let i = 0; i < usersLength; i++) {
       this.paginationArray.push(i)
     }
+    console.log(this.paginationArray);
     
     this.getData();
     
@@ -74,23 +75,30 @@ console.log(key,boolean)
 
   // Pagination for Table
   onClick(i: any) {
+    this.activePage=i;
     this.startPage = i * this.perPage
     this.endPage = (i + 1) * this.perPage
   }
 
   previous() {
-    const currentIndex = this.data.indexOf(this.activeItem);
-    const newIndex = currentIndex === 0 ? this.data.length - 1 : currentIndex - 1;
-    this.activeItem = this.data[newIndex];
+if(this.activePage>1){
+  this.activePage=this.activePage-1;
+  this.startPage = (this.activePage-1) * this.perPage
+    this.endPage = (this.activePage) * this.perPage
 
+}
+ 
 }
 
 next() {
-  console.log("I am next");
-  
-    const currentIndex = this.data.indexOf(this.activeItem);
-    const newIndex = currentIndex === this.data.length - 1 ? 0 : currentIndex + 1;
-    this.activeItem = this.data[newIndex];
+  if ( this.activePage<this.paginationArray.length){
+    this.activePage=this.activePage+1;
+
+    this.startPage = (this.activePage-1) * this.perPage
+    this.endPage = (this.activePage) * this.perPage
+  }
+ 
+   
 }
 
 }
