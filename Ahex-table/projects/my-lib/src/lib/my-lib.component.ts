@@ -22,7 +22,7 @@ export class MyLibComponent {
   paginationArray: any = [];
   booleanValue: any = false;
   duplicateData: any;
-  activeItem: any = this.data;
+  activeItem: any = this.data[0];
 
   constructor() { }
 
@@ -47,7 +47,7 @@ export class MyLibComponent {
     this.headers = Object.keys(this.data[0]);
   }
 
-  // Sorting for Table
+  // Search for Table
   public search(event: any) {
     let searchKey = event.target.value;
     this.data = this.duplicateData;
@@ -59,6 +59,9 @@ export class MyLibComponent {
   }
 
   // Sorting for Table
+  
+
+
   public sort(key: any, boolean: any) {
 
     if (boolean == true) {
@@ -85,10 +88,13 @@ export class MyLibComponent {
 }
 
 next() {
-  console.log("I am next");
   
     const currentIndex = this.data.indexOf(this.activeItem);
+    console.log(currentIndex,'currentIndex');
+    
     const newIndex = currentIndex === this.data.length - 1 ? 0 : currentIndex + 1;
+    console.log(newIndex,'newIndex');
+    
     this.activeItem = this.data[newIndex];
 }
 
