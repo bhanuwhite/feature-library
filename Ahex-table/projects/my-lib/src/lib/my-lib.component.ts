@@ -10,7 +10,7 @@ export class MyLibComponent {
   @Input() tableWidth: any = '50%';
   @Input() searchWidth: any = '230px';
   @Input() backGroundClr: string = '#fff';
-  @Input() headerColor: string = 'grey';
+  @Input() headerColor: string = 'black';
   @Input() headerTxtColor: string = 'white';
   @Input() sortIcon:string="fa-solid fa-arrow-up-9-1 ";
   data: any[]=[];
@@ -23,13 +23,13 @@ export class MyLibComponent {
   paginationArray: any = [];
   booleanValue: any = false;
   duplicateData: any;
+  activeItem: any = this.data;
 
   constructor() { }
 
 
   ngOnInit() {
-    // console.log(this.user);
-    // console.log(this.headers);
+    console.log(this.user);
 
     
     let usersLength = Math.floor(this.user.length / this.perPage)
@@ -78,11 +78,19 @@ console.log(key,boolean)
     this.endPage = (i + 1) * this.perPage
   }
 
-  next(){
-    console.log('next')
-  }
-  previous(){
-    console.log('prev')
-  }
+  previous() {
+    const currentIndex = this.data.indexOf(this.activeItem);
+    const newIndex = currentIndex === 0 ? this.data.length - 1 : currentIndex - 1;
+    this.activeItem = this.data[newIndex];
+
+}
+
+next() {
+  console.log("I am next");
+  
+    const currentIndex = this.data.indexOf(this.activeItem);
+    const newIndex = currentIndex === this.data.length - 1 ? 0 : currentIndex + 1;
+    this.activeItem = this.data[newIndex];
+}
 
 }

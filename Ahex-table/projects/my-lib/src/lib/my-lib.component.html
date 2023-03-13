@@ -9,7 +9,11 @@
   <div class="table">
     <table [style.width]="tableWidth">
       <thead [style.background-color]="headerColor" [style.color]="headerTxtColor">
+<<<<<<< HEAD
         <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}  <i [ngClass]="(sortIcon)?sortIcon:'null'"></i></th>
+=======
+        <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}</th>
+>>>>>>> d7295920be37de206fc727c3358342ed4a9c3fe3
       </thead>
       <tbody>
         <tr *ngFor="let item of data | slice: startPage: endPage " [style.background-color]="backGroundClr">
@@ -26,15 +30,19 @@
         <li class="page-item"  >
           <a class="page-link" (click)="previous()" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only" (click)="previous()">Previous</span>
           </a>
         </li>
         <li *ngFor="let user of paginationArray;let i=index" class="page-item"><a class="page-link"
             (click)="onClick(i)">{{i+1}}</a></li>
         <li class="page-item">
           <a class="page-link" (click)="next()" aria-label="Next">
+<<<<<<< HEAD
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
+=======
+            <span class="sr-only"  >Next</span>
+>>>>>>> d7295920be37de206fc727c3358342ed4a9c3fe3
           </a>
         </li>
       </ul>
