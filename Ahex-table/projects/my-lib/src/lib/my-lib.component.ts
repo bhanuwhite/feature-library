@@ -61,17 +61,24 @@ console.log(this.activePage)
   }
 
   // Sorting for Table
-  public sort(key: any, boolean: any) {
-console.log(key,boolean)
-    if (boolean == true) {
-      this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
-      this.booleanValue = !this.booleanValue
-    }
-    else {
-      this.data.sort((a: any, b: any) => a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0)
-      this.booleanValue = !this.booleanValue
-    }
-  }
+  sortTable(colName: any) { 
+    console.log(colName);
+    
+    this.data.sort((a, b) => { a = a[colName].toLowerCase(); b = b[colName].toLowerCase()
+     return a.localeCompare(b); });
+     }
+  // this.sortTable('CreatedDate');
+//   public sort(key: any, boolean: any) {
+// console.log(key,boolean)
+//     if (boolean == true) {
+//       this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
+//       this.booleanValue = !this.booleanValue
+//     }
+//     else {
+//       this.data.sort((a: any, b: any) => a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0)
+//       this.booleanValue = !this.booleanValue
+//     }
+//   }
 
   // Pagination for Table
   onClick(i: any) {
