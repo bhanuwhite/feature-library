@@ -23,21 +23,20 @@ export class MyLibComponent {
   paginationArray: any = [];
   booleanValue: any = false;
   duplicateData: any;
-  activeItem: any = this.data[0];
-  paginationLength: any;
+  activeItem: any = this.data;
+  activePage:number=1;
 
   constructor() { }
 
 
   ngOnInit() {
-    console.log(this.user);
 
-    
+console.log(this.activePage)    
     let usersLength = Math.floor(this.user.length / this.perPage)
     for (let i = 0; i < usersLength; i++) {
       this.paginationArray.push(i)
     }
-    this.paginationLength= this.paginationArray.length;
+    console.log(this.paginationArray);
     
     this.getData();
     
@@ -50,7 +49,7 @@ export class MyLibComponent {
     this.headers = Object.keys(this.data[0]);
   }
 
-  // Search for Table
+  // Searching in Table
   public search(event: any) {
     let searchKey = event.target.value;
     this.data = this.duplicateData;
@@ -62,43 +61,51 @@ export class MyLibComponent {
   }
 
   // Sorting for Table
-  
-
-
-  public sort(key: any, boolean: any) {
-console.log(key,boolean)
-    if (boolean == true) {
-      this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
-      this.booleanValue = !this.booleanValue
-    }
-    else {
-      this.data.sort((a: any, b: any) => a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0)
-      this.booleanValue = !this.booleanValue
-    }
-  }
+  sortTable(colName: any) { 
+    console.log(colName);
+    
+    this.data.sort((a, b) => { a = a[colName].toLowerCase(); b = b[colName].toLowerCase()
+     return a.localeCompare(b); });
+     }
+  // this.sortTable('CreatedDate');
+//   public sort(key: any, boolean: any) {
+// console.log(key,boolean)
+//     if (boolean == true) {
+//       this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
+//       this.booleanValue = !this.booleanValue
+//     }
+//     else {
+//       this.data.sort((a: any, b: any) => a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0)
+//       this.booleanValue = !this.booleanValue
+//     }
+//   }
 
   // Pagination for Table
   onClick(i: any) {
+    this.activePage=i+1;
     this.startPage = i * this.perPage
     this.endPage = (i + 1) * this.perPage
   }
 
   previous() {
-    const currentIndex = this.data.indexOf(this.activeItem);
-    const newIndex = currentIndex === 0 ? this.data.length - 1 : currentIndex - 1;
-    this.activeItem = this.data[newIndex];
+if(this.activePage>1){
+  this.activePage=this.activePage-1;
+  this.startPage = (this.activePage-1) * this.perPage
+    this.endPage = (this.activePage) * this.perPage
 
+}
+ 
 }
 
 next() {
-  
-    const currentIndex = this.data.indexOf(this.activeItem);
-    console.log(currentIndex,'currentIndex');
-    
-    const newIndex = currentIndex === this.data.length - 1 ? 0 : currentIndex + 1;
-    console.log(newIndex,'newIndex');
-    
-    this.activeItem = this.data[newIndex];
+  if ( this.activePage<this.paginationArray.length){
+    this.activePage=this.activePage+1;
+
+    this.startPage = (this.activePage-1) * this.perPage
+    this.endPage = (this.activePage) * this.perPage
+  }
+ 
+   
 }
 
 }
