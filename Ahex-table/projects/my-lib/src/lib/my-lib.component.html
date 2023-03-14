@@ -21,21 +21,26 @@
   <!--Pagination of Table-->
   <div class="pagination">
     <nav aria-label="Page navigation example">
+     
       <ul class="pagination">
-        <li class="page-item"  >
-          <a class="page-link" (click)="previous()" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only" (click)="previous()">Previous</span>
-          </a>
-        </li>
-        <li *ngFor="let user of paginationArray;let i=index" class="page-item"><a class="page-link"
-            (click)="onClick(i)" [class.active]="i === activeItem">{{i+1}}</a></li>
-        <li class="page-item">
-          <a class="page-link" (click)="next()" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
+        <ng-container *ngFor="let user of paginationArray;let i=index">
+          <li *ngIf="i==0" class="page-item">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li  class="page-item"><a class="page-link"
+              (click)="onClick(i)">{{i+1}}</a></li>
+          <li *ngIf="i==paginationLength"  class="page-item">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span> 
+            </a>
+          </li>
+
+        </ng-container>
+       
       </ul>
     </nav>
   </div>

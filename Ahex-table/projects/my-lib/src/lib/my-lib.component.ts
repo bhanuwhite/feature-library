@@ -24,6 +24,7 @@ export class MyLibComponent {
   booleanValue: any = false;
   duplicateData: any;
   activeItem: any = this.data[0];
+  paginationLength: any;
 
   constructor() { }
 
@@ -36,6 +37,7 @@ export class MyLibComponent {
     for (let i = 0; i < usersLength; i++) {
       this.paginationArray.push(i)
     }
+    this.paginationLength= this.paginationArray.length;
     
     this.getData();
     
