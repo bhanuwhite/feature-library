@@ -23,15 +23,15 @@
   <div class="pagination">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item"  >
+        <li class="page-item"  role="button">
           <a class="page-link" (click)="previous()" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only" (click)="previous()">Previous</span>
           </a>
         </li>
-        <li *ngFor="let user of paginationArray;let i=index" class="page-item"><a class="page-link"   [ngClass]="(user === activePage-1) ? 'active': ''"
+        <li *ngFor="let user of paginationArray;let i=index" class="page-item" role="button"><a class="page-link"   [ngClass]="(user === activePage-1) ? 'active': ''"
             (click)="onClick(i)">{{i+1}}</a></li>
-        <li class="page-item">
+        <li class="page-item" role="button">
           <a class="page-link" (click)="next()" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>

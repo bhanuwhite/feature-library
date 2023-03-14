@@ -75,7 +75,7 @@ console.log(key,boolean)
 
   // Pagination for Table
   onClick(i: any) {
-    this.activePage=i;
+    this.activePage=i+1;
     this.startPage = i * this.perPage
     this.endPage = (i + 1) * this.perPage
   }
