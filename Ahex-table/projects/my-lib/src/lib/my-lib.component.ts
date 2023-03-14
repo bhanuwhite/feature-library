@@ -12,6 +12,7 @@ export class MyLibComponent {
   @Input() backGroundClr: string = '#fff';
   @Input() headerColor: string = 'black';
   @Input() headerTxtColor: string = 'white';
+  @Input() sortIcon:string="fa-solid fa-arrow-up-9-1 ";
   data: any[]=[];
   searchText: any;
   headers: any = [];
@@ -63,7 +64,7 @@ export class MyLibComponent {
 
 
   public sort(key: any, boolean: any) {
-
+console.log(key,boolean)
     if (boolean == true) {
       this.data.sort((a: any, b: any) => a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0)
       this.booleanValue = !this.booleanValue

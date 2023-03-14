@@ -9,7 +9,7 @@
   <div class="table">
     <table [style.width]="tableWidth">
       <thead [style.background-color]="headerColor" [style.color]="headerTxtColor">
-        <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}</th>
+        <th *ngFor="let key of headers" (click)="sort(key, booleanValue)">{{key}}  <i [ngClass]="(sortIcon)?sortIcon:'null'"></i></th>
       </thead>
       <tbody>
         <tr *ngFor="let item of data | slice: startPage: endPage " [style.background-color]="backGroundClr">
@@ -22,8 +22,8 @@
   <div class="pagination">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item"  >
+          <a class="page-link" (click)="previous()" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only" (click)="previous()">Previous</span>
           </a>
@@ -32,7 +32,8 @@
             (click)="onClick(i)" [class.active]="i === activeItem">{{i+1}}</a></li>
         <li class="page-item">
           <a class="page-link" (click)="next()" aria-label="Next">
-            <span class="sr-only"  >Next</span>
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
           </a>
         </li>
       </ul>
