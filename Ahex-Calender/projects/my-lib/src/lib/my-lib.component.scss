@@ -1,0 +1,23 @@
+.heading{
+  margin-left: 40%;
+}
+input[type="date"]{
+  background-color: navy;
+  padding: 15px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 30%;
+  left: 50%;
+  font-family: "Roboto Mono", monospace;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator{
+  background-color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
