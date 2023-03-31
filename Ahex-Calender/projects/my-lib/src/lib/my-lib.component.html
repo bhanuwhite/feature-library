@@ -1,4 +1,4 @@
 <div class="container">
   <h1 class="heading">Calendar Demo</h1>
-  <input  type="date"  [(ngModel)]="dt" (input)="dateSelected($event)"  >
+  <input  type="date"  [max]="formateDate ? formateDate : givenDate" [(ngModel)]="dt" (input)="dateSelected($event)"  >
 </div>

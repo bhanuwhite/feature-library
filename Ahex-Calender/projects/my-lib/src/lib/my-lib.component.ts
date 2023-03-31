@@ -26,30 +26,13 @@ getDate(){
   this.formateDate = this.fromDate.getFullYear() + "-" + ("0" + (this.fromDate.getMonth() + 1)).slice(-2) + "-" + ("0" + this.fromDate.getDate()).slice(-2)
 }
 
-onClick(e:Event){
-
- console.log(e)
-  // const validate = "2019-06-02" => {
-  //   const day = (new Date("2019-06-02")).getDay();
-  //   if (day==0 || day==6) {
-  //     return false;
-  //   }
-  //   return true;
-  }
+//Disable sat and sun 
   dateSelected(ev:Event): any {
-console.log(this.dt)
-
-    const day = (new Date(this.dt)).getDay();
-
-console.log(day)
-      // if (day==0 || day==6) {
-      //   return false;
-      // }
-      // return true;
+    const day = (new Date(this.dt)).getDay(); 
       if([6,0].includes(day)){
         ev.preventDefault();
         this.dt = '';
-        alert('Sunday not allowed');
+        alert('Saturday and Sunday not allowed');
       }
 }
 }
