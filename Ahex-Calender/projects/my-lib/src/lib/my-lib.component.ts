@@ -12,6 +12,9 @@ export class MyLibComponent {
   givenDate:Date = new Date();
   @Input() fromDate: any;  
   @Input() toDate: any;
+  @Input() width: string = '23%';
+  @Input() txtColor:string='white';
+  @Input() backgroundColor:string='green';
   formateDate: any;
   dt:any;
   constructor() { }

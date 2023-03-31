@@ -1,23 +1,28 @@
+//Header in center
 .heading{
-  margin-left: 40%;
+text-align: center;
 }
+
+//Space between header and datepicker input box
+.input-margin-top{
+margin-top: 20px;
+}
+
+
 input[type="date"]{
   background-color:rgb(63, 132, 63);
-  padding: 15px;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 20%;
-  left: 50%;
-  font-family: "Roboto Mono", monospace;
+  padding: 13px;
   color: #fff;
-  font-size: 18px;
+  font-size: 24.5px;
   border: none;
   outline: none;
   border-radius: 5px;
+  margin-left: 315px;
 }
 ::-webkit-calendar-picker-indicator{
   background-color: #fff;
   padding: 5px;
   cursor: pointer;
   border-radius: 3px;
+  margin-left: 4px;
 }

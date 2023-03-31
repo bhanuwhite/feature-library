@@ -1,4 +1,4 @@
 <div class="container">
-  <h1 class="heading">Calendar Demo</h1>
-  <input  type="date"  [max]="formateDate ? formateDate : givenDate" [(ngModel)]="dt" (input)="dateSelected($event)"  >
+  <h1 class="heading">Datepicker</h1>
+  <input  type="date" [style.background]="backgroundColor" [style.color]="txtColor" [style.width]="width" [max]="formateDate ? formateDate : givenDate" [(ngModel)]="dt" (input)="dateSelected($event)"  >
 </div>

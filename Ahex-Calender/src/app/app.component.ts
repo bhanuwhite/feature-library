@@ -10,4 +10,8 @@ export class AppComponent {
   fromdate:Date= new Date();
   toDate:Date = new Date("03/29/2023");
   days:any = 4;
+  width:string='100%';
+  txtColor:string='purple';
+  backgroundColor:string='red';
+
 }
