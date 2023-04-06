@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MyLibComponent } from './my-lib.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,8 @@ import { MyLibComponent } from './my-lib.component';
     MyLibComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ], 
   exports: [
     MyLibComponent

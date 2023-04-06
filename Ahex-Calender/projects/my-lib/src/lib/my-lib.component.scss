@@ -1,23 +1,186 @@
-.heading{
-  margin-left: 40%;
-}
-input[type="date"]{
-  background-color: navy;
-  padding: 15px;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 30%;
-  left: 50%;
-  font-family: "Roboto Mono", monospace;
+.calendar {
+  width: 210px;
+  // background-color: orange;
   color: #fff;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
+  margin-top: -19px;
+
+  .day {
+    width: 30px;
+    display: inline-block;
+    color: black;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
 }
-::-webkit-calendar-picker-indicator{
-  background-color: #fff;
-  padding: 5px;
+.day:hover{
+  background-color:rgb(111, 179, 10);
+  color: #fff !important;
+  border-radius: 30px;
+  font-weight: 800;
+
+ 
+}
+.header{
+  margin-top: 13px;
+}
+.icon{
   cursor: pointer;
-  border-radius: 3px;
+}
+
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+.container{
+    margin-left: 20%;
+    margin-top: 10%;
+}
+
+//   / Month header /
+.month {
+  padding: 70px 25px;
+  width: 20%;
+  // background: navy;
+  text-align: center;
+}
+
+//   / Month list /
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+//   / Previous button inside month header /
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+.prev{
+
+  cursor: pointer;
+  background-color: rgb(2, 68, 11)!important;
+  color: #fff;
+  margin-top: 20px;
+  margin-left: 7px;
+}
+.next{
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: rgb(2, 68, 11)!important;
+  
+  color: #fff;
+  margin-left: 30px;
+}
+.getmonth{
+  margin-top: 20px;
+
+  margin-left: 35px;
+  color: rgb(2, 68, 11)!important;
+
+}
+.calendar-header{
+  background-size: cover;
+  opacity: 0.8;
+  
+  background-image: url('../assets/back2.avif');
+  width: 210px;
+  height: 60px;
+  padding-top: 20px;
+}
+.weekdays{
+  background-color: rgb(0, 128, 17);
+  color: #fff;
+}
+
+//   / Next button /
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+//   / Weekdays (Mon-Sun) /
+.weekdays {
+  width: 24%;
+  margin: 0;
+  padding: 10px 0;
+  background-color: rgb(0, 128, 17);
+  color: #fff!important;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+//   / Days (1-31) /
+.days {
+  width: 24%;
+  padding: 40px 10px;
+  background: #eee;
+  margin: 0;
+  height: 20px;
+
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+//   / Highlight the "current" day /
+.days li .active {
+  padding: 5px;
+  background: rgb(0, 128, 17);
+  color: white !important
+}
+.input-icons i {
+    position: absolute;
+}
+  
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+  
+.input-field {
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+.fa{
+    padding-top: 10px;
+    padding-left: 180px;
+}
+.disable-day{
+  pointer-events: none;
+  cursor:not-allowed;
+  color: rgb(111, 179, 10)!important; 
+}
+.header{
+  padding-top: 19px;
+}
+.background-color{
+  background-color: rgb(111, 179, 10);
+  border-radius: 80px;
+  // padding-top: 2px;
+
+
 }

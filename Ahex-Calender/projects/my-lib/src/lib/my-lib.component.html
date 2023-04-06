@@ -1,5 +1,48 @@
-<div id="container">
-  <h1 class="heading">Calendar Demo</h1>
-  
-  <input type="date" id="input" [max]="formateDate ? formateDate : givenDate">
-</div>
+<div class="container">
+  <h1>Calendar Demo</h1>
+    <div class="input">
+        <div style="max-width:400px;">
+            <div class="input-icons">
+               
+                <i  class="fa fa-calendar icon" aria-hidden="true" (click)="showMyContainer=!showMyContainer"></i>
+                <input class="input-field" [(ngModel)]="myInputValue" placeholder="MM/DD/YYYY">
+            </div>
+      </div>
+    
+    </div>
+        
+    <div class="calender " *ngIf="showMyContainer">
+    <div class="calendar-header"  [style.background-color]="calHeaderColor" [style.font-size]="calHeaderFontSize">
+        <div class="header">
+          <span (click)="onPreviousMonth()" [style.background-color]="calHeaderColor" class="prev"> &#10094; </span>
+      <span class="getmonth"> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
+      <span (click)="onNextMonth()" [style.background-color]="calHeaderColor" class="next">&#10095; </span>
+        </div>
+      
+    </div>
+    
+    <br>
+    
+    <div class="calendar">
+      <span *ngFor='let weekDay of weekDaysName' class="day weekdays">
+        {{ weekDay }}
+    </span>
+
+    <ng-container *ngFor='let day of monthDays'>
+      <span [ngClass]="(day.number == gettingDate)?'background-color':''">
+      <span (click)="max(day)" [ngClass]="(day.weekDayNumber==0||day.weekDayNumber==6 || day.weekDayNumber==5 )?'disable-day':''" class="day" (click)="getDate(day)">
+        {{day.number}}
+      </span>
+    </span>
+    </ng-container>
+    
+
+    </div>
+    
+    </div>
+    </div>
+      
+
+    
+
+    
