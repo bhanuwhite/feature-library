@@ -1,0 +1,30 @@
+<div class="input-container">
+  <i class="fa fa-calendar" aria-hidden="true" (click)="showMyContainer=!showMyContainer"></i>
+  <input class="input-field" [(ngModel)]="myInputValue" >
+</div>
+        
+
+
+  <div class="calendar-container" *ngIf="showMyContainer">
+    <div class="calendar-month-year">
+      <a (click)="onPreviousMonth()" class="prev" > &#10094; </a>
+      <span > {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
+      <a (click)="onNextMonth()" class="next">&#10095; </a>
+    </div>
+
+
+    <div class="calendar-day-dates">
+      <span *ngFor='let weekDay of weekDaysName' class="day weekdays">
+        {{ weekDay }}
+
+
+      </span>
+
+        <span  *ngFor='let day of monthDays' [ngClass]="(day.disable==true)?'disable-day':''" class="day calendar-date" (click)="onClickingDate(day)">
+          {{day.number}}
+        </span>
+        
+    </div>
+    <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+
+  </div>

@@ -1,0 +1,86 @@
+/* Input container for calendar */
+.input-container {
+  position: relative;
+  display: inline-block;
+  left: 308px;
+  margin-bottom: 2px;
+}
+
+.input-container input {
+  padding-right: 30px; /* Add space for icon */
+}
+
+.input-container i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  cursor: pointer;
+}
+.input-field {
+  padding: 10px;
+  text-align: center;
+}
+.calendar-container {
+  position: relative;
+}
+
+.calendar-day-dates {
+    width: 210px;
+    margin:0 auto;
+
+}
+.day {
+      width: 30px;
+      display: inline-block;
+      margin-top: 5px;
+      text-align: center;
+    }
+ 
+.prev{
+    color: #fff;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .next{
+    color: #fff;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+  }
+
+  .calendar-date:hover {
+    color: white; /* Change text color on hover */
+    background-color: green; /* Change background color on hover */
+    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+    border-radius: 10px;
+  }
+  
+  .disable-day{
+    pointer-events: none;
+    cursor:not-allowed;
+    color: lightslategray;    
+  }
+  .calendar-month-year{
+    margin: 0 auto;
+    background-color: forestgreen;
+    width: 25%;
+    height: 60px;
+    text-align: center;
+    padding-top: 30px;
+    color: #fff;
+  }
+  .cancel-btn{
+    margin-left: 310px;
+    margin-top: 10px;
+  }
+  
+  
+  
