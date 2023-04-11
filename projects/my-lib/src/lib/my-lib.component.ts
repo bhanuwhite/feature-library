@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Day } from './modal';
 import { MyLibService } from './my-lib.service';
 
@@ -14,8 +14,8 @@ export class MyLibComponent {
   public holidays: number[] = [26, 28]
   public monthDays: any[] = [];
   public showMyContainer: boolean = false;
-  public monthNumber!: number;
-  public year!: number;
+  public monthNumber: any=new Date().getMonth();
+  public year: any=new Date().getFullYear();
   public weekDaysName = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
   public currentYear: number;
   public currentMonthIndex: number;
@@ -27,9 +27,19 @@ export class MyLibComponent {
   public startDate = new Date('2023-04-11');
   public endDate = new Date('2023-04-15');
   public dates: number[] = [];
+  public isSameMonth:boolean=true;
+ public gettingDate:number=7-4-2023;
+ @Input() headerBackgroundColor:string='blue';
+ @Input() weekdaysBackgroundColor:string='blue';
+ @Input() headerTxtColor:string='green';
+ @Input() weekdaysTxtColor:string='green';
+ @Input() prevTxtColor:string='green';
+ @Input() nextTxtColor:string='green';
+ @Input() datesBackgroundColor:string='white';
+ @Input() cancelBtnBackgroundColor:string='white';
+ @Input() cancelBtnTxtColor:string='white';
 
-
-
+ 
   constructor(public calendarCreator: MyLibService) {
     let date = new Date();
     this.currentYear = date.getFullYear();
@@ -42,6 +52,8 @@ export class MyLibComponent {
 
   }
   onNextMonth(): void {
+    this.isSameMonth=false;
+    
     this.myInputValue='';
     this.monthNumber++;
 
@@ -54,6 +66,8 @@ export class MyLibComponent {
   }
 
   onPreviousMonth(): void {
+    this.isSameMonth=false;
+
     this.myInputValue='';
 
     this.monthNumber--;
@@ -101,7 +115,7 @@ export class MyLibComponent {
     days.map((x: any) => {
       x.holiday = this.holidays.includes(x.number) ? true : false
     })
-    
+    console.log(days)
     this.monthDays = days;
     this.monthNumber = this.monthDays[0].monthIndex;
     this.year = this.monthDays[0].year;
@@ -126,6 +140,11 @@ export class MyLibComponent {
     this.myInputValue = this.selectedDate
     this.showMyContainer = false;
 
+  }
+  close(){
+this.monthNumber=new Date().getMonth();
+this.year=new Date().getFullYear();
+this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
   }
 }
 

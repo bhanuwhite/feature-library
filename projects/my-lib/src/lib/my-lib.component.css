@@ -2,7 +2,7 @@
 .input-container {
   position: relative;
   display: inline-block;
-  left: 308px;
+  left: 310px;
   margin-bottom: 2px;
 }
 
@@ -23,12 +23,12 @@
   text-align: center;
 }
 .calendar-container {
-  position: relative;
+  position: absolute;
 }
 
 .calendar-day-dates {
     width: 210px;
-    margin:0 auto;
+    margin:0 315px;
 
 }
 .day {
@@ -69,17 +69,21 @@
     color: lightslategray;    
   }
   .calendar-month-year{
-    margin: 0 auto;
+    margin: 0 315px;
     background-color: forestgreen;
     width: 25%;
     height: 60px;
     text-align: center;
     padding-top: 30px;
     color: #fff;
+  
   }
   .cancel-btn{
-    margin-left: 310px;
+    margin-left: 315px;
     margin-top: 10px;
+  }
+  .selected-date-background{
+    background-color: green;
   }
   
   

@@ -20,7 +20,6 @@ export class MyLibService {
   public getMonth(monthIndex: number, year: number): Day[] {
     let days = [];
     let firstday = this.createDay(1, monthIndex, year);
-console.log(firstday)
     //create empty days
     for (let i = 1; i < firstday.weekDayNumber; i++) {
       days.push({
