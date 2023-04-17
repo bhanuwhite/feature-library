@@ -1,45 +1,39 @@
-<div class="input-container" >
-  <i class="fa fa-calendar" aria-hidden="true" (click)="showMyContainer=!showMyContainer;close()"></i>
-  <input class="input-field" [(ngModel)]="myInputValue"  >
+<!-- Input box -->
+<div class="input-container">
+  <i class="fa fa-calendar" aria-hidden="true" (click)="showMyContainer=!showMyContainer;onCalendarIconClick()"></i>
+  <input class="input-field" [(ngModel)]="myInputValue">
 </div>
-
-
-
-<div class="calendar-container" *ngIf="showMyContainer" >
+<!-- Calendar -->
+<div class="calendar-container" *ngIf="showMyContainer">
+  <!-- Calendar header -->
   <div class="calendar-month-year" [style.background-color]="headerBackgroundColor" [style.color]="headerTxtColor">
     <a (click)="onPreviousMonth()" [style.color]="prevTxtColor" class="prev"> &#10094; </a>
     <span> {{ calendarCreator.getMonthName(monthNumber) }} &nbsp; {{ year }} </span>
     <a (click)="onNextMonth()" [style.color]="nextTxtColor" class="next">&#10095; </a>
   </div>
-
-
+  <!-- Weekdays and Month Dates-->
+  <!-- For same month -->
   <div class="calendar-day-dates" *ngIf="isSameMonth" [style.background-color]="datesBackgroundColor">
-    <span *ngFor='let weekDay of weekDaysName' [style.background-color]="weekdaysBackgroundColor" [style.color]="weekdaysTxtColor" class="day weekdays">
+    <span *ngFor='let weekDay of weekDaysName' [style.background-color]="weekdaysBackgroundColor"
+      [style.color]="weekdaysTxtColor" class="day weekdays">
       {{ weekDay }}
-
-
     </span>
-    <span *ngFor='let day of monthDays' [ngClass]="(day.enable==true)?'':'disable-day'" class="day calendar-date"
+    <span *ngFor='let day of monthDays' [ngClass]="{'todays-date-background':(day.number==todaysDate),'selected-date-background': (day.number==choosenDate)}" class="day calendar-date"
       (click)="onClickingDate(day)">
       {{day.number}}
     </span>
-    
-
-
+   
   </div>
+  <!-- For different months -->
   <div class="calendar-day-dates" [style.background-color]="datesBackgroundColor" *ngIf="!isSameMonth">
-    <span *ngFor='let weekDay of weekDaysName'  [style.background-color]="weekdaysBackgroundColor" class="day weekdays">
+    <span *ngFor='let weekDay of weekDaysName' [style.background-color]="weekdaysBackgroundColor" class="day weekdays">
       {{ weekDay }}
-
-
     </span>
-    <span *ngFor='let day of monthDays' [ngClass]="(day.disable==true)?'disable-day':''" class="day calendar-date"
+    <span *ngFor='let day of monthDays'  class="day calendar-date"
       (click)="onClickingDate(day)">
       {{day.number}}
     </span>
-
-
   </div>
+  <!-- Cancel button -->
   <button class="cancel-btn" (click)="onCancel()">Cancel</button>
-
 </div>

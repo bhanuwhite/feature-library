@@ -7,16 +7,16 @@ import { Day } from './modal';
 export class MyLibService {
   private currentYear!: number;
   private currentMonthIndex!: number;
-
   constructor() {
     let date = new Date();
     this.currentYear = date.getFullYear();
     this.currentMonthIndex = date.getMonth();
-   }
-   public getCurrentMonth(): Day[] {
+  }
+  //To get current month
+  public getCurrentMonth(): Day[] {
     return this.getMonth(this.currentMonthIndex, this.currentYear);
   }
-
+  //To get month
   public getMonth(monthIndex: number, year: number): Day[] {
     let days = [];
     let firstday = this.createDay(1, monthIndex, year);
@@ -28,7 +28,7 @@ export class MyLibService {
         year: year,
       } as Day);
     }
-    if(firstday.weekDayNumber==0){
+    if (firstday.weekDayNumber == 0) {
       for (let i = 1; i <= 6; i++) {
         days.push({
           weekDayNumber: i,
@@ -37,23 +37,18 @@ export class MyLibService {
         } as Day);
       }
     }
-   
     days.push(firstday);
-    // console.log(days)
-
-
     let countDaysInMonth = new Date(year, monthIndex, 0).getDate();
-
-    for (let i = 2; i < countDaysInMonth +1; i++) {
+    for (let i = 2; i < countDaysInMonth + 1; i++) {
       days.push(this.createDay(i, monthIndex, year));
     }
     return days;
   }
-
+  //For getting month name
   public getMonthName(monthIndex: number): string {
     switch (monthIndex) {
       case 0:
-        return "January";      
+        return "January";
       case 1:
         return "February";
       case 2:
@@ -81,7 +76,7 @@ export class MyLibService {
         return "|" + monthIndex;
     }
   }
-
+  //For getting week day name
   public getWeekDayName(weekDay: number): string {
     switch (weekDay) {
       case 0:
@@ -103,7 +98,7 @@ export class MyLibService {
         return "";
     }
   }
-
+  //For creating day
   private createDay(dayNumber: number, monthIndex: number, year: number) {
     let day = new Day();
     day.monthIndex = monthIndex;
@@ -112,7 +107,6 @@ export class MyLibService {
     day.year = year;
     day.weekDayNumber = new Date(year, monthIndex, dayNumber).getDay();
     day.weekDayName = this.getWeekDayName(day.weekDayNumber);
-    
     return day;
   }
 }

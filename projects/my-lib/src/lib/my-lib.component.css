@@ -84,6 +84,13 @@
   }
   .selected-date-background{
     background-color: green;
+    border-radius: 10px;
+    color: white;
+  }
+  .todays-date-background{
+    background-color: darkgray;
+    border-radius: 10px;
+    color: white;
   }
   
   
