@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Ahex-Calender';
-  fromdate:Date= new Date("2023/03/22");
-  toDate:Date = new Date("03/29/2023");
-  days:any = 4;
+  // weekDayNumber:any =[2,4];
+  satertDate:Date= new Date("09/april/2023");
+  endDate:Date = new Date("03/29/2023");
 }

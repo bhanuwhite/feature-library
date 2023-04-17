@@ -1,12 +1,11 @@
 <div class="container">
   <h1>Calendar Demo</h1>
     <div class="input">
-        <div style="max-width:400px;">
-            <div class="input-icons">
-               
-                <i  class="fa fa-calendar icon" aria-hidden="true" (click)="showMyContainer=!showMyContainer"></i>
+        <div style="max-width:400px">
+            <div class="input-icons"> 
+               <i  class="fa fa-calendar icon" aria-hidden="true" (click)="showMyContainer=!showMyContainer ;close()"></i>
                 <input class="input-field" [(ngModel)]="myInputValue" placeholder="MM/DD/YYYY">
-            </div>
+            </div> 
       </div>
     
     </div>
@@ -23,26 +22,26 @@
     
     <br>
     
-    <div class="calendar">
-      <span *ngFor='let weekDay of weekDaysName' class="day weekdays">
-        {{ weekDay }}
+   
+     <!-- Weekdays and Month Dates-->
+  <div class="calendar" *ngIf="isSameMonth" [style.background-color]="datesBackgroundColor">
+    <span *ngFor='let weekDay of weekDaysName' class="day weekdays" [style.background-color]="weekdaysBackgroundColor"
+      [style.color]="weekdaysTxtColor">
+      {{ weekDay }}
     </span>
-
-    <ng-container *ngFor='let day of monthDays'>
-      <span [ngClass]="(day.number == gettingDate)?'background-color':''">
-      <span (click)="max(day)" [ngClass]="(day.weekDayNumber==0||day.weekDayNumber==6 || day.weekDayNumber==5 )?'disable-day':''" class="day" (click)="getDate(day)">
-        {{day.number}}
-      </span>
+    <span *ngFor='let day of monthDays' [ngClass]="{'todays-date-background':(day.number==todaysDate),'choosen-date-background': (day.number==choosenDate),'disable-day':(day.disable==true)}" class="day"
+      (click)="onClickDate(day)">
+      {{day.number}}
     </span>
-    </ng-container>
-    
-
-    </div>
-    
-    </div>
-    </div>
-      
-
-    
-
-    
+   
+  </div>
+  <div class="calendar" [style.background-color]="datesBackgroundColor" *ngIf="!isSameMonth">
+    <span *ngFor='let weekDay of weekDaysName' [style.background-color]="weekdaysBackgroundColor" class="day weekdays">
+      {{ weekDay }}
+    </span>
+    <span *ngFor='let day of monthDays' [ngClass]="(day.disable==true)?'disable-day':''" class="day"
+      (click)="onClickDate(day)">
+      {{day.number}}
+    </span>
+  </div>
+</div>

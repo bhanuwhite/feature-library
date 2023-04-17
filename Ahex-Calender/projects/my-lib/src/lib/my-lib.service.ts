@@ -19,6 +19,9 @@ export class MyLibService {
     return this.getMonth(this.currentMonthIndex, this.currentYear);
   }
 
+  // ‘getMonth’ create an array of days. 
+  //It has two cycles first one create empty days of last month if they are in a first week of a month,
+  // second cycle create days of a current month.
   public getMonth(monthIndex: number, year: number): Day[] {
     let days = [];
 
@@ -32,8 +35,17 @@ export class MyLibService {
         year: year,
       } as Day);
     }
+    if(firstday.weekDayNumber==0){
+      for (let i = 1; i <= 6; i++) {
+        days.push({
+          weekDayNumber: i,
+          monthIndex: monthIndex,
+          year: year,
+        } as Day);
+      }
+    }
     days.push(firstday);
-    //
+    
 
     let countDaysInMonth = new Date(year, monthIndex, 0).getDate();
     for (let i = 2; i < countDaysInMonth + 1; i++) {
@@ -44,7 +56,7 @@ export class MyLibService {
 
     return days;
   }
-
+// Function for returning a name of month by index
   public getMonthName(monthIndex: number): string {
     switch (monthIndex) {
       case 0:
@@ -73,9 +85,11 @@ export class MyLibService {
         return "December";
 
       default:
-        return "|" + monthIndex;
+        return "January";
     }
   }
+
+// Function for returning a name of week by index
 
   public getWeekDayName(weekDay: number): string {
     switch (weekDay) {
@@ -98,7 +112,7 @@ export class MyLibService {
         return "";
     }
   }
-
+//‘createDay’ this function initialize our Day model.
   private createDay(dayNumber: number, monthIndex: number, year: number) {
     let day = new Day();
 
