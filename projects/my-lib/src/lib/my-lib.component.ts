@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Day } from './modal';
 import { MyLibService } from './my-lib.service';
-
-
 @Component({
   selector: 'lib-my-lib',
   templateUrl: "./my-lib.component.html",
@@ -10,25 +8,26 @@ import { MyLibService } from './my-lib.service';
 
 })
 export class MyLibComponent {
-  public weekDay: number[] = [0, 6];
-  public holidays: string[] = ['22/3/2023', '24/3/2023'];
+  public weekDay: number[] = [];
+  public holidays: string[] = [];
   public monthDays: any[] = [];
   public showMyContainer: boolean = false;
   public monthNumber: number = new Date().getMonth();
   public year: number = new Date().getFullYear();
   public weekDaysName = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-  public currentYear: number;
-  public currentMonthIndex: number;
   public myInputValue!: number | string;
-  public selectedDate!: string;
-  public minDate: string = '2023-04-04';
-  public maxDate: string = '2023-04-07';
-  public startDate = new Date('2023-04-11');
-  public endDate = new Date('2023-04-15');
+  public selectedDate: string = '';
+  public minDate: string = '';
+  public maxDate: string = '';
+  public startDate!: Date;
+  public endDate!: Date;
   public dates: number[] = [];
-  public isSameMonth: boolean = false;
   public todaysDate!: number;
   public choosenDate!: number;
+  public todaysDateObject = new Date();
+  public currentYear = this.todaysDateObject.getFullYear();
+  public currentMonthIndex = this.todaysDateObject.getMonth();
+  public selectedMonthIndex!: number;
   @Input() headerBackgroundColor: string = 'blue';
   @Input() weekdaysBackgroundColor: string = 'blue';
   @Input() headerTxtColor: string = 'green';
@@ -38,24 +37,28 @@ export class MyLibComponent {
   @Input() datesBackgroundColor: string = 'white';
   @Input() cancelBtnBackgroundColor: string = 'white';
   @Input() cancelBtnTxtColor: string = 'white';
-  constructor(public calendarCreator: MyLibService) {
-    let date = new Date();
-    this.currentYear = date.getFullYear();
-    this.currentMonthIndex = date.getMonth();
-    this.todaysDate = date.getDate();
-  }
+  constructor(public calendarCreator: MyLibService) {}
   ngOnInit() {
-    this.isSameMonth = true;
+    this.todaysDate = this.todaysDateObject.getDate(); //showing todays date after clicking calendar icon
     this.setMonthDays(this.calendarCreator.getCurrentMonth());
   }
   //On next button click
   onNextMonth(): void {
     this.monthNumber++;
+    // For highlighting todays date
     if (this.monthNumber == this.currentMonthIndex) {
-      this.isSameMonth = true;
+      this.todaysDate = this.todaysDateObject.getDate();
     } else {
-      this.isSameMonth = false;
+      this.todaysDate = 0;
     }
+    // For highlighting selected date
+    if (this.monthNumber == this.selectedMonthIndex) {
+      const selectedDateObject = new Date(this.selectedDate)
+      this.choosenDate = selectedDateObject.getDate();
+    } else {
+      this.choosenDate = 0;
+    }
+    // When year changed
     if (this.monthNumber == 12) {
       this.monthNumber = 0;
       this.year++;
@@ -65,11 +68,20 @@ export class MyLibComponent {
   //On prev button click
   onPreviousMonth(): void {
     this.monthNumber--;
+    // For highlighting todays date
     if (this.monthNumber == this.currentMonthIndex) {
-      this.isSameMonth = true;
+      this.todaysDate = this.todaysDateObject.getDate();
     } else {
-      this.isSameMonth = false;
+      this.todaysDate = 0;
     }
+    // For highlighting selected date
+    if (this.monthNumber == this.selectedMonthIndex) {
+      const selectedDateObject = new Date(this.selectedDate)
+      this.choosenDate = selectedDateObject.getDate();
+    } else {
+      this.choosenDate = 0;
+    }
+    // When year changed
     if (this.monthNumber < 0) {
       this.monthNumber = 11;
       this.year--;
@@ -124,16 +136,26 @@ export class MyLibComponent {
     yr = day.year;
     mnth = day.monthIndex + 1;
     dt = day.number;
-    this.selectedDate = dt + '/' + mnth + '/' + yr;
+    this.selectedDate = mnth + '/' + dt + '/' + yr;
     this.myInputValue = this.selectedDate;
     this.showMyContainer = false;
+    this.selectedMonthIndex=day.monthIndex
   }
   //Functionality for showing current month on clicking calendar icon
   onCalendarIconClick() {
-    this.isSameMonth = true;
-    this.monthNumber = new Date().getMonth();
-    this.year = new Date().getFullYear();
-    this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+    if (this.selectedDate == '') {
+      this.monthNumber = new Date().getMonth();
+      this.year = new Date().getFullYear();
+      this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+      this.todaysDate = this.todaysDateObject.getDate();
+    }
+    else {
+      const dateObject = new Date(this.selectedDate)
+      this.monthNumber = dateObject.getMonth();
+      this.year = dateObject.getFullYear();
+      this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+      this.choosenDate = dateObject.getDate();
+    }
   }
 }
 

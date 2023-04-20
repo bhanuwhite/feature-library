@@ -62,12 +62,6 @@
     cursor: pointer; /* Add cursor pointer to indicate it's clickable */
     border-radius: 10px;
   }
-  
-  .disable-day{
-    pointer-events: none;
-    cursor:not-allowed;
-    color: lightslategray;    
-  }
   .calendar-month-year{
     margin: 0 315px;
     background-color: forestgreen;
@@ -92,6 +86,28 @@
     border-radius: 10px;
     color: white;
   }
-  
-  
-  
+  .weekdays-selected{
+    pointer-events: none;
+    cursor:not-allowed;
+    color: lightslategray; 
+  }
+  .selected-min-date{
+    pointer-events: none;
+    cursor:not-allowed;
+    color: orchid; 
+  }
+  .selected-max-date{
+    pointer-events: none;
+    cursor:not-allowed;
+    color: yellowgreen; 
+  }
+  .range-selected{
+    pointer-events: none;
+    cursor:not-allowed;
+    color:skyblue; 
+  }
+  .selected-holidays{
+    pointer-events: none;
+    cursor:not-allowed;
+    color: red; 
+  }
