@@ -19,8 +19,6 @@ export class MyLibComponent {
   public selectedDate: string = '';
   public minDate: string = '';
   public maxDate: string = '';
-  public startDate!: Date;
-  public endDate!: Date;
   public dates: number[] = [];
   public todaysDate!: number;
   public choosenDate!: number;
@@ -28,6 +26,9 @@ export class MyLibComponent {
   public currentYear = this.todaysDateObject.getFullYear();
   public currentMonthIndex = this.todaysDateObject.getMonth();
   public selectedMonthIndex!: number;
+  public isSelecting: boolean = false;
+  public selectedRangeOfDates: number[] = [];
+  public clickTimer: any;
   @Input() headerBackgroundColor: string = 'blue';
   @Input() weekdaysBackgroundColor: string = 'blue';
   @Input() headerTxtColor: string = 'green';
@@ -37,13 +38,28 @@ export class MyLibComponent {
   @Input() datesBackgroundColor: string = 'white';
   @Input() cancelBtnBackgroundColor: string = 'white';
   @Input() cancelBtnTxtColor: string = 'white';
-  constructor(public calendarCreator: MyLibService) {}
+  isDoubleClicked: boolean = false;
+  currentDate!: number;
+  endDate!: number;
+  startDate!: number;
+  startDateMonth!: number;
+  endDateMonth!: number;
+  monthWithStartDate: boolean = false;
+  monthWithEndDate: boolean = false;
+  inputStartDate!: string | number;
+  inputEndDate!: string;
+  constructor(public calendarCreator: MyLibService) { }
   ngOnInit() {
     this.todaysDate = this.todaysDateObject.getDate(); //showing todays date after clicking calendar icon
     this.setMonthDays(this.calendarCreator.getCurrentMonth());
   }
   //On next button click
   onNextMonth(): void {
+    if(this.startDate==undefined){
+      this.isSelecting=false;
+    } else{
+      this.isSelecting = true;
+    }
     this.monthNumber++;
     // For highlighting todays date
     if (this.monthNumber == this.currentMonthIndex) {
@@ -64,10 +80,54 @@ export class MyLibComponent {
       this.year++;
     }
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+    if(this.monthNumber==this.startDateMonth && this.monthNumber==this.endDateMonth){
+      this.currentDate = this.startDate;
+      while (this.currentDate <= this.endDate) {
+        this.selectedRangeOfDates.push(this.currentDate);
+        this.currentDate = this.currentDate + 1;
+      }
+      this.monthDays.map((x: any) => {
+        x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+      });
+     this.choosenDate=0;
+    } else{
+      if(this.monthNumber == this.endDateMonth){
+        this.monthWithEndDate=true;
+          this.choosenDate=0;
+        this.selectedRangeOfDates = [];
+        this.currentDate = 1;
+        while (this.currentDate <= this.endDate) {
+          this.selectedRangeOfDates.push(this.currentDate);
+          this.currentDate = this.currentDate + 1;
+        }
+        this.monthDays.map((x: any) => {
+          x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+        })
+     
+    }
+    if(this.monthNumber==this.startDateMonth){
+      this.selectedRangeOfDates = [];
+      let noOfDaysInMonth = new Date(this.currentYear, this.startDateMonth + 1, 0).getDate();
+      this.currentDate = this.startDate;
+      while (this.currentDate <= noOfDaysInMonth) {
+        this.selectedRangeOfDates.push(this.currentDate);
+        this.currentDate = this.currentDate + 1;
+      } 
+      this.monthDays.map((x: any) => {
+        x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+      })
+  }
+    } 
+   
+   
+
+
   }
   //On prev button click
   onPreviousMonth(): void {
     this.monthNumber--;
+    this.isSelecting = false;
+
     // For highlighting todays date
     if (this.monthNumber == this.currentMonthIndex) {
       this.todaysDate = this.todaysDateObject.getDate();
@@ -87,6 +147,44 @@ export class MyLibComponent {
       this.year--;
     }
     this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
+    if(this.monthNumber==this.startDateMonth && this.monthNumber==this.endDateMonth){
+      this.currentDate = this.startDate;
+      while (this.currentDate <= this.endDate) {
+        this.selectedRangeOfDates.push(this.currentDate);
+        this.currentDate = this.currentDate + 1;
+      }
+      this.monthDays.map((x: any) => {
+        x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+      });
+     this.choosenDate=0;
+    } else{
+      if(this.monthNumber==this.startDateMonth){
+        this.selectedRangeOfDates = [];
+        let noOfDaysInMonth = new Date(this.currentYear, this.startDateMonth + 1, 0).getDate();
+        this.currentDate = this.startDate;
+        while (this.currentDate <= noOfDaysInMonth) {
+          this.selectedRangeOfDates.push(this.currentDate);
+          this.currentDate = this.currentDate + 1;
+        } 
+        this.monthDays.map((x: any) => {
+          x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+        })
+    }
+    if(this.monthNumber==this.endDateMonth){
+      this.choosenDate=0;
+      this.selectedRangeOfDates=[];
+      this.currentDate = 1;
+      while (this.currentDate <= this.endDate) {
+        this.selectedRangeOfDates.push(this.currentDate);
+        this.currentDate = this.currentDate + 1;
+      }
+      this.monthDays.map((x: any) => {
+        x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+      })
+    }
+    }
+   
+
   }
   //Setting days in month of calendar
   private setMonthDays(days: Day[]): void {
@@ -104,17 +202,6 @@ export class MyLibComponent {
     days.map((x: any) => {
       x.max = (x.number > maxNumber) ? true : false
     })
-    //Functionality for enabling range of dates 
-    // Returns an array of dates between the two dates
-    const currentDate = new Date(this.startDate);// Clone the start date to avoid modifying the original date
-    // Loop through each date, adding it to the dates array
-    while (currentDate <= this.endDate) {
-      this.dates.push(currentDate.getDate());
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-    days.map((x: any) => {
-      x.enable = this.dates.includes(x.number) ? true : false
-    })
     //Functionality for holidays
     days.map((x: any) => {
       x.holiday = this.holidays.includes(x.number + '/' + (x.monthIndex) + '/' + x.year) ? true : false
@@ -127,19 +214,25 @@ export class MyLibComponent {
   onCancel() {
     this.showMyContainer = false;
   }
-  //To show the selected date in input field of calendar
   onClickingDate(day: Day) {
-    this.choosenDate = day.number
-    let yr;
-    let mnth;
-    let dt;
-    yr = day.year;
-    mnth = day.monthIndex + 1;
-    dt = day.number;
-    this.selectedDate = mnth + '/' + dt + '/' + yr;
-    this.myInputValue = this.selectedDate;
-    this.showMyContainer = false;
-    this.selectedMonthIndex=day.monthIndex
+    this.clickTimer = setTimeout(() => {
+      if (this.isDoubleClicked == false) {
+        this.showMyContainer = false;
+      }
+    }, 250)
+    if(this.isSelecting==false){
+      this.choosenDate = day.number
+      let yr;
+      let mnth;
+      let dt;
+      yr = day.year;
+      mnth = day.monthIndex + 1;
+      dt = day.number;
+      this.selectedDate = mnth + '/' + dt + '/' + yr;
+      this.myInputValue = this.selectedDate;
+      this.selectedMonthIndex = day.monthIndex
+    }
+   
   }
   //Functionality for showing current month on clicking calendar icon
   onCalendarIconClick() {
@@ -156,6 +249,56 @@ export class MyLibComponent {
       this.setMonthDays(this.calendarCreator.getMonth(this.monthNumber, this.year));
       this.choosenDate = dateObject.getDate();
     }
+  }
+  //To show the selected date in input field of calendar
+  onDoubleClickingDate(day: Day) {
+    this.isDoubleClicked = true;
+    clearTimeout(this.clickTimer);
+    //Functionality for enabling range of dates 
+    if (this.isSelecting == false) {
+      this.startDate = day.number;
+      this.startDateMonth = day.monthIndex;
+    }
+    else {
+      this.inputStartDate=this.selectedDate;
+      let yr;
+      let mnth;
+      let dt;
+      yr = day.year;
+      mnth = day.monthIndex + 1;
+      dt = day.number;
+      this.inputEndDate = mnth + '/' + dt + '/' + yr;
+      this.myInputValue=(this.inputStartDate + '-' + this.inputEndDate);
+      this.endDateMonth = day.monthIndex;
+      this.endDate = day.number;
+      if (this.startDateMonth == this.endDateMonth) {
+        this.currentDate = this.startDate;
+        while (this.currentDate <= this.endDate) {
+          this.selectedRangeOfDates.push(this.currentDate);
+          this.currentDate = this.currentDate + 1;
+        }
+      } else {
+        let noOfDaysInMonth = new Date(day.year, day.monthIndex, 0).getDate();
+        this.currentDate = this.startDate;
+        while (this.currentDate <= noOfDaysInMonth) {
+          this.selectedRangeOfDates.push(this.currentDate);
+          this.currentDate = this.currentDate + 1;
+        }
+        if (this.monthWithEndDate == false) {
+          this.selectedRangeOfDates = [];
+        }
+        this.currentDate = 1;
+        while (this.currentDate <= this.endDate) {
+          this.selectedRangeOfDates.push(this.currentDate);
+          this.currentDate = this.currentDate + 1;
+        }
+      }
+      this.monthDays.map((x: any) => {
+        x.enable = this.selectedRangeOfDates.includes(x.number) ? true : false
+      })
+      this.choosenDate = 0;
+    }
+    this.isSelecting = true;
   }
 }
 

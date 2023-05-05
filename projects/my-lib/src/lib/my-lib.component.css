@@ -101,13 +101,12 @@
     cursor:not-allowed;
     color: yellowgreen; 
   }
-  .range-selected{
-    pointer-events: none;
-    cursor:not-allowed;
-    color:skyblue; 
-  }
+ 
   .selected-holidays{
     pointer-events: none;
     cursor:not-allowed;
     color: red; 
+  }
+  .highlight {
+    background-color:lightgreen;
   }

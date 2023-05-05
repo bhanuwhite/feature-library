@@ -12,15 +12,17 @@
     <a (click)="onNextMonth()" [style.color]="nextTxtColor" class="next">&#10095; </a>
   </div>
   <!-- Weekdays and Month Dates-->
-  <div class="calendar-day-dates"  [style.background-color]="datesBackgroundColor">
+  <div class="calendar-day-dates" [style.background-color]="datesBackgroundColor">
     <span *ngFor='let weekDay of weekDaysName' [style.background-color]="weekdaysBackgroundColor"
       [style.color]="weekdaysTxtColor" class="day weekdays">
       {{ weekDay }}
     </span>
-    <span *ngFor='let day of monthDays' [ngClass]="{'todays-date-background':(day.number==todaysDate),'selected-date-background': (day.number==choosenDate),'weekdays-selected':(day.disable==true),'selected-min-date':(day.min==true),'selected-max-date':(day.max==true),'range-selected':(day.enable==true),'selected-holidays':(day.holiday==true)}" class="day calendar-date"
-      (click)="onClickingDate(day)">
+    <span  *ngFor='let day of monthDays;'
+       [ngClass]="{'todays-date-background':(day.number==todaysDate),'selected-date-background': (day.number==choosenDate),'weekdays-selected':(day.disable==true),'selected-min-date':(day.min==true),'selected-max-date':(day.max==true),'selected-holidays':(day.holiday==true),'highlight':(day.enable==true)}"
+      class="day calendar-date" (dblclick)="onDoubleClickingDate(day)"   (click)="onClickingDate(day)">
       {{day.number}}
     </span>
+
   </div>
   <!-- Cancel button -->
   <button class="cancel-btn" (click)="onCancel()">Cancel</button>
